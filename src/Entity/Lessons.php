@@ -29,20 +29,11 @@ class Lessons
     private $lessons;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\categorie", inversedBy="lessons")
-     */
-    private $categories_idcategories;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Categories", inversedBy="lessons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $idcategories;
 
-    public function __construct()
-    {
-        $this->categories_idcategories = new ArrayCollection();
-    }
 
     public function getId()
     {
@@ -73,33 +64,9 @@ class Lessons
         return $this;
     }
 
-    /**
-     * @return Collection|Categories[]
-     */
-    public function getCategoriesIdcategories(): Collection
+    public function setIdcategories(?Categories $idcategories): self
     {
-        return $this->categories_idcategories;
-    }
-
-    public function addCategoriesIdcategory(Categories $categoriesIdcategory): self
-    {
-        if (!$this->categories_idcategories->contains($categoriesIdcategory)) {
-            $this->categories_idcategories[] = $categoriesIdcategory;
-            $categoriesIdcategory->setLessons($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategoriesIdcategory(Categories $categoriesIdcategory): self
-    {
-        if ($this->categories_idcategories->contains($categoriesIdcategory)) {
-            $this->categories_idcategories->removeElement($categoriesIdcategory);
-            // set the owning side to null (unless already changed)
-            if ($categoriesIdcategory->getLessons() === $this) {
-                $categoriesIdcategory->setLessons(null);
-            }
-        }
+        $this->idcategories = $idcategories;
 
         return $this;
     }
@@ -107,12 +74,5 @@ class Lessons
     public function getIdcategories(): ?Categories
     {
         return $this->idcategories;
-    }
-
-    public function setIdcategories(?Categories $idcategories): self
-    {
-        $this->idcategories = $idcategories;
-
-        return $this;
     }
 }
