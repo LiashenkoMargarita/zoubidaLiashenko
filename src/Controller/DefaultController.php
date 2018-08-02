@@ -1,19 +1,20 @@
-
 <?php
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController
+class DefaultController extends Controller
 {
-    public function index()
+    /**
+     * @Route("/default", name="default")
+     */
+    public function index():Response
     {
-       return new Response(
-            '<html><body>Lucky number: 22</body></html>'
+        $number = random_int(0, 100);
+        return new Response(
+            "<html><body>Lucky number: $number</body></html>" 
         );
     }
 }
-
-
-?>
