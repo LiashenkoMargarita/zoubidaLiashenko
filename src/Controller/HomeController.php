@@ -17,6 +17,8 @@ class HomeController extends Controller
             "user" => [
                 "Nom" => "Bob",
                 "Prenom" => "Patric",
+                "avatar" => "http://tout-sur-la-boxe.net/wp-content/uploads/bob%20l%5C'%C3%A9ponge.jpg",
+                "image" => "assets/static/images/500.png",
             ]
         ]);
     }
